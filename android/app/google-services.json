@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "189752905499",
+    "project_id": "gangapp-dbd0b",
+    "storage_bucket": "gangapp-dbd0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189752905499:android:c596c92f4134f5b4de0dbe",
+        "android_client_info": {
+          "package_name": "com.example.appgangapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189752905499-jsqoqjj1kq6ggkv2d3mkc8vt73meq0gm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appgangapp",
+            "certificate_hash": "811cd2237c0e21de0184faa9291ccd7f3eed9403"
+          }
+        },
+        {
+          "client_id": "189752905499-kntss6bdruvoqm8ncl165gnvm5klfd8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfW8HY4dvBvJRqg_4ASIbIrvBcv_ELSnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189752905499-kntss6bdruvoqm8ncl165gnvm5klfd8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
