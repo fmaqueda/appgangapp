@@ -1,5 +1,6 @@
-import 'package:appgangapp/controllers/modules/auth/auth_controllers/auth_controller.dart';
-import 'package:appgangapp/pages/hometab.dart';
+import 'package:appgangapp/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/auth/screens/hometab.dart';
+import 'package:appgangapp/routes/app_pages.dart';
 import 'package:appgangapp/theme/app_theme.dart';
 import 'package:appgangapp/utils/splash_class.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,7 +17,7 @@ void main() {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Get.put<AuthController>(AuthController());
+  //Get.put<AuthController>(AuthController());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   runApp(MyApp());
@@ -37,9 +38,15 @@ class MyApp extends StatelessWidget {
         } else {
           // Loading is done, return the app:
           return GetMaterialApp(
-            title: 'Flutter Demo',
+            title: 'GangAPP',
+            initialRoute: Routes.LOADING,
             theme: appTheme,
-            home: const HomePageTab(),
+            initialBinding: BindingsBuilder(
+              () {
+                Get.put<AuthController>(AuthController());
+              },
+            ), //AuthBinding(), //Routes.LOADING
+            getPages: AppPages.routes,
           );
         }
       },

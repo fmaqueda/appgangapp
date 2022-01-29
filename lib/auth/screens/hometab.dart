@@ -1,7 +1,7 @@
 import 'package:appgangapp/theme/app_theme.dart';
 import 'package:appgangapp/theme/color_theme.dart';
-import 'package:appgangapp/views/signin_page.dart';
-import 'package:appgangapp/views/signup_page.dart';
+import 'package:appgangapp/auth/screens/signin_page.dart';
+import 'package:appgangapp/auth/screens/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTab extends StatelessWidget {

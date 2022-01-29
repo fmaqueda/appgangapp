@@ -1,9 +1,9 @@
-import 'package:appgangapp/controllers/modules/auth/auth_controllers/auth_controller.dart';
-import 'package:appgangapp/pages/hometab.dart';
+import 'package:appgangapp/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/auth/screens/hometab.dart';
 import 'package:appgangapp/theme/color_theme.dart';
 import 'package:appgangapp/utils/image_load.dart';
-import 'package:appgangapp/utils/product_widget.dart';
-import 'package:appgangapp/views/profile_page.dart';
+import 'package:appgangapp/products/otherwidgets/product_widget.dart';
+import 'package:appgangapp/auth/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

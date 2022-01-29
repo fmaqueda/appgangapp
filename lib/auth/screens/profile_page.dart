@@ -1,5 +1,5 @@
-import 'package:appgangapp/controllers/modules/auth/auth_controllers/auth_controller.dart';
-import 'package:appgangapp/pages/hometab.dart';
+import 'package:appgangapp/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/auth/screens/hometab.dart';
 import 'package:appgangapp/theme/color_theme.dart';
 import 'package:appgangapp/theme/text_theme.dart';
 import 'package:appgangapp/utils/image_load.dart';
