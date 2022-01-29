@@ -51,6 +51,8 @@ class AppColors {
   static const Color backgroudColorFour = Color(0xff4ca456);
   static const Color colorObscure = Color(0xff394141);
 
+  static const Color textColor = Color(0xff394141);
+
   static const Color orange = Color(0xfff5a523);
   static const Color green = Color(0xff7ed221);
   static const Color red = Color(0xffd0011b);

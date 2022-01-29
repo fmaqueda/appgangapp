@@ -118,7 +118,7 @@ class SigInPage extends StatelessWidget {
                             User? _okGSignIn =
                                 await authController.signInGoogle();
                             if (_okGSignIn != null) {
-                              Get.to(const ListGangas());
+                              Get.to(ListGangas());
                             } else {
                               showGetDialog(
                                 context,
@@ -143,7 +143,7 @@ class SigInPage extends StatelessWidget {
                           onPressed: () async {
                             authController.addToken();
                             await authController.signInAnonymous();
-                            Get.to(const ListGangas());
+                            Get.to(ListGangas());
                           },
                           child: const Text("Entrar Anonimamente"),
                         ),
@@ -181,7 +181,7 @@ class SigInPage extends StatelessWidget {
                                       content: Text("Tus datos son correctos"),
                                     ),
                                   );
-                                  Get.to(const ListGangas());
+                                  Get.to(ListGangas());
                                 }
                               }
                             }

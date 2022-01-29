@@ -245,7 +245,7 @@ class SigUpPage extends StatelessWidget {
                                     content: Text("Tus datos son correctos"),
                                   ),
                                 );
-                                Get.to(const ListGangas());
+                                Get.to(ListGangas());
                               }
                             }
                           }
