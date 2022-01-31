@@ -22,7 +22,8 @@ class ProductWidget extends StatelessWidget {
       child: Center(
         child: Text(
           product,
-          style: textTheme.subtitle2!.copyWith(color: AppColors.textColor),
+          style:
+              textThemePropio.subtitle2!.copyWith(color: AppColors.textColor),
         ),
       ),
     );

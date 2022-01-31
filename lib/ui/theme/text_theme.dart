@@ -2,7 +2,7 @@ import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-final TextTheme textTheme = TextTheme(
+final TextTheme textThemePropio = TextTheme(
   headline1: GoogleFonts.notoSans(
       color: AppColors.textColor, fontSize: 48, fontWeight: FontWeight.w300),
   headline2: GoogleFonts.notoSans(

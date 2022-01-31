@@ -52,6 +52,7 @@ class AppColors {
   static const Color colorObscure = Color(0xff394141);
 
   static const Color textColor = Color(0xff394141);
+  static const Color textColorAlt = Color(0xff5bb462);
 
   static const Color orange = Color(0xfff5a523);
   static const Color green = Color(0xff7ed221);

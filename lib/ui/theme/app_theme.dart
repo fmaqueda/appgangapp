@@ -1,12 +1,13 @@
 import 'package:appgangapp/ui/theme/color_theme.dart';
+import 'package:appgangapp/ui/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'text_theme.dart';
 
 final ThemeData appTheme = ThemeData(
   brightness: Brightness.light,
-  textTheme: textTheme,
-  primaryTextTheme: textTheme,
+  textTheme: textThemePropio,
+  primaryTextTheme: textThemePropio,
   scaffoldBackgroundColor: Colors.white,
   errorColor: AppColors.redError,
   colorScheme: lightColorScheme,

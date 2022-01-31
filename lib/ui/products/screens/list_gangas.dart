@@ -3,6 +3,8 @@ import 'package:appgangapp/ui/auth/screens/hometab.dart';
 import 'package:appgangapp/ui/auth/screens/profile_page.dart';
 import 'package:appgangapp/ui/products/otherwidgets/product_widget.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
+import 'package:appgangapp/ui/theme/gang_app_icons_icons.dart';
+import 'package:appgangapp/ui/theme/text_theme.dart';
 import 'package:appgangapp/utils/image_load.dart';
 
 import 'package:flutter/material.dart';
@@ -44,13 +46,29 @@ class ListGangas extends StatelessWidget {
                         authController.firestoreUser!.value!.photoUrl),
                     accountName: (authController.firestoreUser!.value != null &&
                             authController.firestoreUser!.value!.name != null)
-                        ? Text(authController.firestoreUser!.value!.name!)
-                        : const Text("Sin Nombre"),
+                        ? Text(
+                            authController.firestoreUser!.value!.name!,
+                            style: textThemePropio.subtitle1!
+                                .copyWith(color: AppColors.textColorAlt),
+                          )
+                        : Text(
+                            "Sin Nombre",
+                            style: textThemePropio.subtitle1!
+                                .copyWith(color: AppColors.textColorAlt),
+                          ),
                     accountEmail: (authController.firestoreUser!.value !=
                                 null &&
                             authController.firestoreUser!.value!.email != null)
-                        ? Text(authController.firestoreUser!.value!.email!)
-                        : const Text("Sin Email"),
+                        ? Text(
+                            authController.firestoreUser!.value!.email!,
+                            style: textThemePropio.subtitle1!
+                                .copyWith(color: AppColors.textColorAlt),
+                          )
+                        : Text(
+                            "Sin Email",
+                            style: textThemePropio.subtitle1!
+                                .copyWith(color: AppColors.textColorAlt),
+                          ),
                   ),
                 ),
               Padding(
@@ -58,10 +76,11 @@ class ListGangas extends StatelessWidget {
                 child: Column(
                   children: [
                     ListTile(
-                      title: const Text("Gangas Estrella"),
+                      title: Text("Gangas Estrella",
+                          style: textThemePropio.subtitle1!),
                       subtitle: const Text("subtitulo"),
                       trailing: const Icon(
-                        Icons.message,
+                        GangAppIcons.search_product,
                         color: Colors.black,
                       ),
                       onTap: () {
@@ -74,9 +93,9 @@ class ListGangas extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                      title: const Text("Perfil"),
+                      title: Text("Perfil", style: textThemePropio.subtitle1!),
                       trailing: const Icon(
-                        Icons.account_circle,
+                        GangAppIcons.user_profile,
                         color: Colors.black,
                       ),
                       onTap: () {
@@ -90,7 +109,8 @@ class ListGangas extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     ListTile(
-                      title: const Text("Cerrar Sesion"),
+                      title: Text("Cerrar Sesion",
+                          style: textThemePropio.subtitle1!),
                       trailing: const Icon(
                         Icons.account_circle,
                         color: Colors.black,

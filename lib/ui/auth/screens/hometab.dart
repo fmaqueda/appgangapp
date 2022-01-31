@@ -2,6 +2,7 @@ import 'package:appgangapp/ui/auth/screens/signin_page.dart';
 import 'package:appgangapp/ui/auth/screens/signup_page.dart';
 import 'package:appgangapp/ui/theme/app_theme.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
+import 'package:appgangapp/ui/theme/text_theme.dart';
 
 import 'package:flutter/material.dart';
 
@@ -22,14 +23,14 @@ class HomePageTab extends StatelessWidget {
               Tab(
                 icon: Text(
                   "Log In",
-                  style: appTheme.textTheme.headline6!
+                  style: textThemePropio.headline6!
                       .copyWith(fontWeight: FontWeight.w600, fontSize: 20),
                 ),
               ),
               Tab(
                 icon: Text(
                   "Registrarse",
-                  style: appTheme.textTheme.headline6!
+                  style: textThemePropio.headline6!
                       .copyWith(fontWeight: FontWeight.w600, fontSize: 20),
                 ),
               )

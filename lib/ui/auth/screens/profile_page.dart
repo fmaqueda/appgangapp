@@ -27,7 +27,7 @@ class ProfilePageFinal extends StatelessWidget {
               Container(
                 height: 40,
                 width: 40,
-                color: AppColors.orange,
+                color: AppColors.backgroudColorOne,
                 child: GestureDetector(
                   onTap: () => Get.back(),
                   child: Icon(
@@ -43,7 +43,7 @@ class ProfilePageFinal extends StatelessWidget {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        AppColors.orangeButton),
+                        AppColors.backgroudColorOne),
                   ),
                   onPressed: () async {
                     //Get.to(EditUser());
@@ -75,7 +75,7 @@ class ProfilePageFinal extends StatelessWidget {
                             authController.firestoreUser!.value!.name != null)
                         ? authController.firestoreUser!.value!.name!
                         : "Usuario Anonimo",
-                    style: textTheme.headline6,
+                    style: textThemePropio.headline6,
                   ),
                 ),
               ),
@@ -87,7 +87,7 @@ class ProfilePageFinal extends StatelessWidget {
                             authController.firestoreUser!.value!.email != null)
                         ? authController.firestoreUser!.value!.email!
                         : "Email no configurado",
-                    style: textTheme.headline5,
+                    style: textThemePropio.headline5,
                   ),
                 ),
               ),
@@ -99,13 +99,14 @@ class ProfilePageFinal extends StatelessWidget {
                   width: double.infinity,
                   child: TextButton(
                     style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        backgroundColor:
-                            MaterialStateProperty.all(const Color(0xFFFFB449))),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                          AppColors.backgroudColorOne),
+                    ),
                     child: const Text(
                       "CERRAR SESION",
                       style: TextStyle(
