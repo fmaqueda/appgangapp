@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:appgangapp/global_widgets/show_get_dialog.dart';
 import 'package:appgangapp/models/user_model.dart';
-import 'package:appgangapp/auth/screens/hometab.dart';
+
 import 'package:appgangapp/services/firestore/firestore_service_users.dart';
-import 'package:appgangapp/products/screens/list_gangas.dart';
+import 'package:appgangapp/ui/auth/screens/hometab.dart';
+import 'package:appgangapp/ui/products/screens/list_gangas.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

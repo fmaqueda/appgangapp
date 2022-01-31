@@ -1,6 +1,7 @@
-import 'package:appgangapp/auth/screens/hometab.dart';
-import 'package:appgangapp/auth/screens/loading_screen.dart';
-import 'package:appgangapp/products/screens/list_gangas.dart';
+import 'package:appgangapp/ui/auth/screens/hometab.dart';
+import 'package:appgangapp/ui/auth/screens/loading_screen.dart';
+import 'package:appgangapp/ui/products/screens/list_gangas.dart';
+
 import 'package:get/route_manager.dart';
 
 part 'app_routes.dart';

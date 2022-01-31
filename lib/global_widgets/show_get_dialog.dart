@@ -1,4 +1,4 @@
-import 'package:appgangapp/theme/color_theme.dart';
+import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

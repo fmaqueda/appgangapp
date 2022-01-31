@@ -39,6 +39,7 @@ dependencies:
   json_serializable: ^6.1.4
   build_runner: ^2.1.7
   flutter_native_splash: ^1.2.4
+  flutter_launcher_icons: ^0.9.2
 
   ###
   ### FIREBASE
@@ -123,3 +124,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: GangAppIcons
+      fonts:
+        - asset: fonts/GangAppIcons.ttf

@@ -1,7 +1,7 @@
-import 'package:appgangapp/auth/controllers/auth_controller.dart';
-import 'package:appgangapp/auth/screens/hometab.dart';
-import 'package:appgangapp/theme/color_theme.dart';
-import 'package:appgangapp/theme/text_theme.dart';
+import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/ui/auth/screens/hometab.dart';
+import 'package:appgangapp/ui/theme/color_theme.dart';
+import 'package:appgangapp/ui/theme/text_theme.dart';
 import 'package:appgangapp/utils/image_load.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

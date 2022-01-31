@@ -1,9 +1,11 @@
-import 'package:appgangapp/auth/controllers/auth_controller.dart';
 import 'package:appgangapp/global_widgets/form_input_field.dart';
 import 'package:appgangapp/global_widgets/show_get_dialog.dart';
-import 'package:appgangapp/theme/color_theme.dart';
+
+import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/ui/products/screens/list_gangas.dart';
+import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:appgangapp/utils/form_validators.dart';
-import 'package:appgangapp/products/screens/list_gangas.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';

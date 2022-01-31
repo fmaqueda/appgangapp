@@ -1,7 +1,7 @@
-import 'package:appgangapp/auth/controllers/auth_controller.dart';
-import 'package:appgangapp/auth/screens/hometab.dart';
 import 'package:appgangapp/routes/app_pages.dart';
-import 'package:appgangapp/theme/app_theme.dart';
+
+import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/ui/theme/app_theme.dart';
 import 'package:appgangapp/utils/splash_class.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
