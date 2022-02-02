@@ -83,6 +83,17 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+# Plugin flutter_launcher_icons
+flutter_icons:
+  image_path_android: "assets/launcher/appicon-android.png"
+  image_path_ios: "assets/launcher/appicon-ios.png"
+  adaptive_icon_background: "assets/launcher/adaptive-icon-background.png"
+  adaptive_icon_foreground: "assets/launcher/adaptive-icon-foreground.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

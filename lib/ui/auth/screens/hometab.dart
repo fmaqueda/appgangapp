@@ -1,6 +1,5 @@
 import 'package:appgangapp/ui/auth/screens/signin_page.dart';
 import 'package:appgangapp/ui/auth/screens/signup_page.dart';
-import 'package:appgangapp/ui/theme/app_theme.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:appgangapp/ui/theme/text_theme.dart';
 
