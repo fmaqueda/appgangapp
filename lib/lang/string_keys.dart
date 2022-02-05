@@ -11,4 +11,16 @@ class SK {
 
   // ignore: constant_identifier_names
   static const password_not_match = "Las passwords son distintas";
+
+  // ignore: constant_identifier_names
+  static const field_cannot_be_empty = "field_cannot_be_empty";
+
+  // ignore: constant_identifier_names
+  static const description_too_short = "Descripción muy corta";
+
+  // ignore: constant_identifier_names
+  static const description_cannot_be_empty = "Rellene la descripción";
+
+  // ignore: constant_identifier_names
+  static const not_valid_number = "El texto introducido no es un número";
 }

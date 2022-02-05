@@ -1,6 +1,10 @@
+import 'package:appgangapp/global_widgets/navigation/custom_navigation_bar.dart';
+import 'package:appgangapp/routes/app_pages.dart';
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
+
 import 'package:appgangapp/ui/auth/screens/hometab.dart';
-import 'package:appgangapp/ui/auth/screens/profile_page.dart';
+import 'package:appgangapp/ui/home/controllers/nav_controller.dart';
+import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
 import 'package:appgangapp/ui/products/otherwidgets/product_widget.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:appgangapp/ui/theme/gang_app_icons_icons.dart';
@@ -10,8 +14,10 @@ import 'package:appgangapp/utils/image_load.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ListGangas extends StatelessWidget {
-  ListGangas({Key? key}) : super(key: key);
+int indexpage = 0;
+
+class ListGangasBackup extends StatelessWidget {
+  ListGangasBackup({Key? key}) : super(key: key);
 
   //PARA TEST
   final List<Map> myProducts =
@@ -21,16 +27,29 @@ class ListGangas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find();
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        title: const Text("Listado de Gangas"),
-        titleTextStyle: const TextStyle(color: Colors.black),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
-      drawer: Obx(
-        () => Drawer(
+
+    final NavController navController = Get.find();
+
+    return Obx(
+      () => Scaffold(
+        /*
+        bottomNavigationBar: CustomNavigationBar(
+          selectedIndex: navController.indexpage.value,
+          onIndexChanged: (i) {
+            navController.indexpage.value = i;
+            print(navController.indexpage.value);
+          },
+        ),
+        */
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: const Text("Listado de Gangas"),
+          titleTextStyle: const TextStyle(color: Colors.black),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+        ),
+        drawer: //Obx(() =>
+            Drawer(
           backgroundColor: AppColors.backgroudColorOne,
           child: ListView(
             children: [
@@ -104,7 +123,7 @@ class ListGangas extends StatelessWidget {
                               authController.firestoreUser!.value!.name!;
                         }
                         Get.back();
-                        Get.to(ProfilePageFinal());
+                        Get.to(ProfileScreen());
                       },
                     ),
                     const SizedBox(height: 30),
@@ -126,42 +145,44 @@ class ListGangas extends StatelessWidget {
               )
             ],
           ),
+          // ),
         ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppColors.backgroudColorThree,
-          border: Border.all(
-            color: AppColors.colorObscure.withOpacity(0.5),
-            width: 2.0,
+        body: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.backgroudColorThree,
+            border: Border.all(
+              color: AppColors.colorObscure.withOpacity(0.5),
+              width: 2.0,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Column(
-            children: [
-              Container(
-                height: 40,
-                child: Text("Barra de Categorías"),
-              ),
-              Flexible(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 4 / 5,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 20),
-                    itemCount: myProducts.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return ProductWidget(product: myProducts[index]["name"]);
-                    }),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
+          child: Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Column(
+              children: [
+                Container(
+                  height: 40,
+                  child: Text("Barra de Categorías"),
+                ),
+                Flexible(
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 200,
+                              childAspectRatio: 4 / 5,
+                              crossAxisSpacing: 20,
+                              mainAxisSpacing: 20),
+                      itemCount: myProducts.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return ProductWidget(
+                            product: myProducts[index]["name"]);
+                      }),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
       ),

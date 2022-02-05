@@ -1,6 +1,10 @@
 import 'package:appgangapp/ui/auth/screens/hometab.dart';
 import 'package:appgangapp/ui/auth/screens/loading_screen.dart';
-import 'package:appgangapp/ui/products/screens/list_gangas.dart';
+import 'package:appgangapp/ui/home/bindings/nav_binding.dart';
+import 'package:appgangapp/ui/home/screens/home_screen.dart';
+import 'package:appgangapp/ui/products/bindings/product_binding.dart';
+import 'package:appgangapp/ui/products/screens/add_product_page.dart';
+import 'package:appgangapp/ui/profile/screens/edit_user_page.dart';
 
 import 'package:get/route_manager.dart';
 
@@ -17,11 +21,21 @@ class AppPages {
     ),
     GetPage(
       name: Routes.HOME,
-      page: () => ListGangas(),
+      page: () => const HomeScreen(),
+      binding: NavBinding(),
     ),
     GetPage(
       name: Routes.INTRO,
       page: () => const HomePageTab(),
+    ),
+    GetPage(
+      name: Routes.EDITPROFILE,
+      page: () => EditUser(),
+    ),
+    GetPage(
+      name: Routes.ADDPRODUCT,
+      page: () => AddProduct(),
+      binding: ProductBinding(),
     ),
   ];
 }

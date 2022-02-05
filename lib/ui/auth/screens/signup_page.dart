@@ -1,8 +1,9 @@
 import 'package:appgangapp/global_widgets/form_input_field.dart';
 import 'package:appgangapp/global_widgets/show_get_dialog.dart';
+import 'package:appgangapp/routes/app_pages.dart';
 
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
-import 'package:appgangapp/ui/products/screens/list_gangas.dart';
+import 'package:appgangapp/ui/products/screens/list_gangas_backup.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:appgangapp/utils/form_validators.dart';
 
@@ -247,7 +248,7 @@ class SigUpPage extends StatelessWidget {
                                     content: Text("Tus datos son correctos"),
                                   ),
                                 );
-                                Get.to(ListGangas());
+                                Get.toNamed(Routes.HOME);
                               }
                             }
                           }

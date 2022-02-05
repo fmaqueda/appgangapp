@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'ui/home/bindings/nav_binding.dart';
+
 /*
 void main() {
   runApp(const MyApp());
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
             initialBinding: BindingsBuilder(
               () {
                 Get.put<AuthController>(AuthController());
+                //NavBinding();
               },
             ), //AuthBinding(), //Routes.LOADING
             getPages: AppPages.routes,

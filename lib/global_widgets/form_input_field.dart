@@ -1,5 +1,6 @@
 import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FormInputField extends StatelessWidget {
@@ -14,6 +15,7 @@ class FormInputField extends StatelessWidget {
     required this.controller,
     required this.onChanged,
     required this.onSaved,
+    this.inputFormatters,
     this.suffixIcon,
     this.keyboardType = TextInputType.text,
   }) : super(key: key);
@@ -30,6 +32,8 @@ class FormInputField extends StatelessWidget {
   final void Function(String?) onSaved;
   final TextEditingController controller;
   final TextInputType keyboardType;
+
+  final List<TextInputFormatter>? inputFormatters;
 
   final Widget? suffixIcon;
 
@@ -68,6 +72,7 @@ class FormInputField extends StatelessWidget {
       minLines: minLines,
       onChanged: onChanged,
       onSaved: onSaved,
+      inputFormatters: inputFormatters,
     );
   }
 }
