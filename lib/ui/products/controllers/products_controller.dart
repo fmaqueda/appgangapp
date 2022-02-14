@@ -22,6 +22,7 @@ class ProductController extends GetxController {
   RxList<String> menuCategories = <String>[].obs;
 
   Rx<List<ProductModel>> productsList = Rx<List<ProductModel>>([]);
+  Rx<List<ProductModel>> productsListPerCategory = Rx<List<ProductModel>>([]);
 
 /*
   List<String> menuCategories = <String>[
