@@ -1,3 +1,4 @@
+import 'package:appgangapp/ui/auth/bindings/auth_binding.dart';
 import 'package:appgangapp/ui/auth/screens/hometab.dart';
 import 'package:appgangapp/ui/auth/screens/loading_screen.dart';
 import 'package:appgangapp/ui/home/bindings/nav_binding.dart';
@@ -19,11 +20,10 @@ class AppPages {
       name: Routes.LOADING,
       page: () => const LoadingScreen(),
     ),
-    GetPage(
-      name: Routes.HOME,
-      page: () => const HomeScreen(),
-      binding: NavBinding(),
-    ),
+    GetPage(name: Routes.HOME, page: () => const HomeScreen(), bindings: [
+      NavBinding(),
+      ProductBinding(),
+    ]),
     GetPage(
       name: Routes.INTRO,
       page: () => const HomePageTab(),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:appgangapp/global_widgets/form_input_field.dart';
+import 'package:appgangapp/global_widgets/get_image/get_image.dart';
 import 'package:appgangapp/global_widgets/show_get_dialog_2btn.dart';
 import 'package:appgangapp/models/user_model.dart';
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
@@ -16,6 +17,8 @@ class EditUser extends StatelessWidget {
   EditUser({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
+
+  final GetImage getImage = GetImage();
 
   @override
   Widget build(BuildContext context) {
@@ -146,35 +149,57 @@ class EditUser extends StatelessWidget {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    //_imgFromCamera(context);
-                    //_imgFromGallery(context);
-                    _showpicker(context);
-                  },
-                  child: Obx(() {
-                    return Center(
+                Obx(() {
+                  return GestureDetector(
+                    onTap: () async {
+                      //_imgFromCamera(context);
+                      //_imgFromGallery(context);
+                      //_showpicker(context);
+
+                      await getImage.showPicker(context);
+                      authController.pathImageUser.value = getImage.pathImage;
+                    },
+                    child: Center(
                       //child: (authController.sampleImage!.value.path == "")
-                      child: (authController.firestoreUser!.value == null ||
-                              authController.firestoreUser!.value!.photoUrl ==
-                                  null)
-                          ? Icon(Icons.camera_alt)
-                          : CircleAvatar(
-                              foregroundColor: Colors.black,
-                              radius: 75,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(75),
-                                child: Image.network(
+                      child: ((authController.firestoreUser!.value == null ||
                                   authController
-                                      .firestoreUser!.value!.photoUrl!,
-                                  fit: BoxFit.fill,
-                                  width: 150,
-                                ),
-                              ),
-                            ),
-                    );
-                  }),
-                ),
+                                          .firestoreUser!.value!.photoUrl ==
+                                      null ||
+                                  authController
+                                          .firestoreUser!.value!.photoUrl ==
+                                      "") &&
+                              (authController.pathImageUser.value == ""))
+                          ? Icon(Icons.camera_alt)
+                          : ((authController.pathImageUser.value != "")
+                              ? CircleAvatar(
+                                  foregroundColor: Colors.black,
+                                  radius: 75,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(75),
+                                      child: Image.file(
+                                        File(
+                                          authController.pathImageUser.value,
+                                        ),
+                                        fit: BoxFit.fill,
+                                        width: 150,
+                                      )),
+                                )
+                              : CircleAvatar(
+                                  foregroundColor: Colors.black,
+                                  radius: 75,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(75),
+                                    child: Image.network(
+                                      authController
+                                          .firestoreUser!.value!.photoUrl!,
+                                      fit: BoxFit.fill,
+                                      width: 150,
+                                    ),
+                                  ),
+                                )),
+                    ),
+                  );
+                }),
               ],
             ),
             Form(
@@ -281,7 +306,7 @@ class EditUser extends StatelessWidget {
                           primary: AppColors.backgroudColorOne,
                           minimumSize: Size(double.infinity, 50),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             /*
                             if (authController.passwordController.text !=
@@ -293,15 +318,31 @@ class EditUser extends StatelessWidget {
                               );
                             } */
 
-                            UserModel _updatedUser = UserModel(
-                                uid: authController.firestoreUser!.value!.uid,
-                                email:
-                                    authController.firestoreUser!.value!.email,
-                                name: authController.nameController.text,
-                                photoUrl: authController
-                                    .firestoreUser!.value!.photoUrl);
+                            if (authController.pathImageUser.value != "") {
+                              UserModel _updatedUser = UserModel(
+                                  uid: authController.firestoreUser!.value!.uid,
+                                  email: authController
+                                      .firestoreUser!.value!.email,
+                                  name: authController.nameController.text,
+                                  photoUrl: "");
 
-                            authController.updateUser(context, _updatedUser);
+                              await getImage.uploadFileUser(
+                                  context,
+                                  File(authController.pathImageUser.value),
+                                  _updatedUser);
+
+                              authController.updateUser(context, _updatedUser);
+                            } else {
+                              UserModel _updatedUser = UserModel(
+                                  uid: authController.firestoreUser!.value!.uid,
+                                  email: authController
+                                      .firestoreUser!.value!.email,
+                                  name: authController.nameController.text,
+                                  photoUrl: authController
+                                      .firestoreUser!.value!.photoUrl);
+
+                              authController.updateUser(context, _updatedUser);
+                            }
 
                             if (true) {
                               ScaffoldMessenger.of(context).showSnackBar(

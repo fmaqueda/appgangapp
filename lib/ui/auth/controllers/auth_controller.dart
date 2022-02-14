@@ -3,18 +3,13 @@ import 'dart:developer';
 import 'package:appgangapp/global_widgets/show_get_dialog.dart';
 import 'package:appgangapp/models/user_model.dart';
 import 'package:appgangapp/routes/app_pages.dart';
-
 import 'package:appgangapp/services/firestore/firestore_service_users.dart';
-import 'package:appgangapp/ui/auth/screens/hometab.dart';
-import 'package:appgangapp/ui/products/screens/list_gangas_backup.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import 'package:image_picker/image_picker.dart';
 
 class AuthController extends GetxController {
@@ -40,6 +35,19 @@ class AuthController extends GetxController {
   Rxn<User>? firebaseUser = Rxn<User>();
   Rxn<UserModel>? firestoreUser = Rxn<UserModel>();
 
+  var urlImageUser = ''.obs;
+  var pathImageUser = ''.obs;
+
+  @override
+  void onInit() {
+    //run every tine auth state change
+    ever(firebaseUser!, handleAuthChanged);
+
+    firebaseUser!.bindStream(user);
+    super.onInit();
+  }
+
+/*
   @override
   void onReady() async {
     //run every tine auth state change
@@ -48,6 +56,7 @@ class AuthController extends GetxController {
     firebaseUser!.bindStream(user);
     super.onReady();
   }
+*/
 
 //Firebase user a realtime stream
   Stream<User?> get user => _auth.authStateChanges();

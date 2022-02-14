@@ -1,12 +1,15 @@
 import 'dart:io';
 
 import 'package:appgangapp/global_widgets/form_input_field.dart';
+import 'package:appgangapp/global_widgets/get_image/get_image.dart';
 import 'package:appgangapp/global_widgets/show_get_dialog.dart';
 import 'package:appgangapp/models/products/product_model.dart';
 import 'package:appgangapp/services/firestore/firestore_service_products.dart';
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
 import 'package:appgangapp/ui/products/controllers/products_controller.dart';
+import 'package:appgangapp/ui/products/otherwidgets/dropdown/dropdownmenu.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
+import 'package:appgangapp/ui/theme/text_theme.dart';
 import 'package:appgangapp/utils/form_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,14 +22,23 @@ class AddProduct extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final GetImage getImage = GetImage();
+
   @override
   Widget build(BuildContext context) {
     final picker = ImagePicker();
 
-    AuthController authController = Get.find();
-
     ProductController productController = Get.find();
 
+/*
+    final List<DropdownMenuItem<String>> _dropdownCategories =
+        productController.menuCategories
+            .map((String value) => DropdownMenuItem(
+                  value: value,
+                  child: Text(value),
+                ))
+            .toList();
+*/
 /*
     Future _uploadFile(BuildContext context, File imageProfile) async {
       firebase_storage.Reference storageReference = firebase_storage
@@ -133,35 +145,46 @@ class AddProduct extends StatelessWidget {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    //_imgFromCamera(context);
-                    //_imgFromGallery(context);
-                    _showpicker(context);
-                  },
-                  child: Obx(() {
-                    return Center(
-                      //child: (authController.sampleImage!.value.path == "")
-                      child: (authController.firestoreUser!.value == null ||
-                              authController.firestoreUser!.value!.photoUrl ==
-                                  null)
+                Obx(() {
+                  return GestureDetector(
+                    onTap: () async {
+                      //_imgFromCamera(context);
+                      //_imgFromGallery(context);
+                      //_showpicker(context);
+                      await getImage.showPicker(context);
+                      productController.pathImageProduct.value =
+                          getImage.pathImage;
+                    },
+                    child: Center(
+                      child: (productController.pathImageProduct.value == "")
+                          //child: (authController.firestoreUser!.value == null ||
+                          //        authController.firestoreUser!.value!.photoUrl ==
+                          //            null)
                           ? Icon(Icons.camera_alt)
                           : CircleAvatar(
                               foregroundColor: Colors.black,
                               radius: 75,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(75),
+                                  borderRadius: BorderRadius.circular(75),
+                                  child: Image.file(
+                                    File(
+                                      productController.pathImageProduct.value,
+                                    ),
+                                    fit: BoxFit.fill,
+                                    width: 150,
+                                  )
+                                  /*
                                 child: Image.network(
-                                  authController
-                                      .firestoreUser!.value!.photoUrl!,
+                                  productController.pathImageProduct.value,
                                   fit: BoxFit.fill,
                                   width: 150,
                                 ),
-                              ),
+                                */
+                                  ),
                             ),
-                    );
-                  }),
-                ),
+                    ),
+                  );
+                }),
               ],
             ),
             Form(
@@ -172,6 +195,30 @@ class AddProduct extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Obx(() {
+                      List<DropdownMenuItem<String>> _dropdownCategories =
+                          productController.menuCategories
+                              .map((String value) => DropdownMenuItem(
+                                    value: value,
+                                    child: Text(value),
+                                  ))
+                              .toList();
+                      return DropdownButton<String>(
+                        style: textThemePropio.headline6!
+                            .copyWith(color: AppColors.backgroudColorThree),
+                        value: productController.categorySelected.value,
+                        hint: const Text("Selecciona Categoria"),
+                        items: _dropdownCategories,
+                        onChanged: (String? newvalue) {
+                          if (newvalue != null) {
+                            productController.categorySelected.value = newvalue;
+                          }
+                        },
+                      );
+                    }),
                     const SizedBox(
                       height: 20,
                     ),
@@ -252,31 +299,54 @@ class AddProduct extends StatelessWidget {
                           minimumSize: Size(double.infinity, 50),
                         ),
                         onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState!.validate() &&
+                              productController.categorySelected.value !=
+                                  "Selecciona Categoria") {
+                            String _producUID =
+                                productController.genProductUID();
                             ProductModel _newProduct = ProductModel(
-                                uid: "",
+                                uid: _producUID,
+                                photoUrl: "",
                                 name: productController.nameProduct.text,
-                                originalprice:
+                                originalPrice:
                                     productController.originalPrice.text,
-                                realprice: productController.realPrice.text,
+                                realPrice: productController.realPrice.text,
                                 description:
-                                    productController.descriptionProduct.text);
+                                    productController.descriptionProduct.text,
+                                productCategory:
+                                    productController.categorySelected.value);
 
-                            productController.createProduct(_newProduct);
+                            //
+                            if (productController.pathImageProduct.value !=
+                                "") {
+                              await getImage.uploadFileProduct(
+                                  context,
+                                  File(
+                                      productController.pathImageProduct.value),
+                                  _newProduct);
 
-                            if (true) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Tus datos son correctos"),
-                                ),
+                              productController.createProduct(_newProduct);
+
+                              if (true) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Producto guardado"),
+                                  ),
+                                );
+                                Get.back();
+                              }
+                            } else {
+                              showGetDialog(
+                                context,
+                                "Atención",
+                                "Falta la imagen. Es necesario cargar una imagen de producto",
                               );
-                              Get.back();
                             }
                           } else {
                             showGetDialog(
                               context,
                               "Atención",
-                              "TRellene todos los campos!!",
+                              "Rellene todos los campos!!",
                             );
                           }
                         },

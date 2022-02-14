@@ -3,6 +3,7 @@ import 'package:appgangapp/global_widgets/navigation/custom_navigation_bar.dart'
 import 'package:appgangapp/routes/app_pages.dart';
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
 import 'package:appgangapp/ui/home/controllers/nav_controller.dart';
+import 'package:appgangapp/ui/home/screens/product_home_screen.dart';
 import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
 import 'package:appgangapp/ui/proof/screens/page1.dart';
 import 'package:appgangapp/ui/proof/screens/page2.dart';
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     var screens = [
       Page1(),
       Page2(),
-      Page3(),
+      ProductHomeScreen(),
       ProfileScreen(),
     ];
 

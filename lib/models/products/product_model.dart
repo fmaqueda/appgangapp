@@ -6,18 +6,20 @@ part 'product_model.g.dart';
 class ProductModel {
   String? uid;
   final String? name;
-  final String? originalprice;
-  final String? realprice;
+  final String? originalPrice;
+  final String? realPrice;
   final String? description;
-  //String? imageProductUrl;
+  String? photoUrl;
+  String? productCategory;
 
   ProductModel({
-    required this.uid,
-    required this.name,
-    //required this.imageProductUrl,
-    required this.originalprice,
-    required this.realprice,
-    required this.description,
+    this.uid,
+    this.name,
+    this.photoUrl,
+    this.originalPrice,
+    this.realPrice,
+    this.description,
+    this.productCategory,
   });
 
   /// Connect the generated [_$UserModelFromJson] function to the `fromJson`

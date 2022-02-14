@@ -1,3 +1,4 @@
+import 'package:appgangapp/ui/products/otherwidgets/dropdown/dropdownmenu.dart';
 import 'package:flutter/material.dart';
 
 class Page2 extends StatelessWidget {
@@ -7,7 +8,11 @@ class Page2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Page 2"),
+        child: Column(
+          children: [
+            Text("Page 2"),
+          ],
+        ),
       ),
     );
   }

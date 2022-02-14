@@ -7,7 +7,7 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = Get.find();
+    //final AuthController authController = Get.find();
     return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),

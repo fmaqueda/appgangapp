@@ -31,6 +31,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'GangAPP',
+      initialRoute: Routes.LOADING,
+      theme: appTheme,
+      initialBinding: BindingsBuilder(
+        () {
+          Get.put<AuthController>(AuthController());
+          //NavBinding();
+        },
+      ), //AuthBinding(), //Routes.LOADING
+      getPages: AppPages.routes,
+    );
+
+    /*
     return FutureBuilder(
       future: Init.instance.initialize(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -53,7 +67,7 @@ class MyApp extends StatelessWidget {
           );
         }
       },
-    );
+    );*/
 /*
     return GetMaterialApp(
         title: 'BEAR NOT BEAR', home: const Intro(), theme: appTheme);
@@ -69,6 +83,6 @@ class Init {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
   }
 }
