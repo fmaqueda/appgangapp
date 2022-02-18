@@ -25,6 +25,8 @@ class RowCategories extends StatelessWidget {
                           .where((element) =>
                               element.productCategory == categories[index])
                           .toList();
+                  productController.updateSearchQuery(
+                      productController.searchQueryController.text);
                 },
                 style: ButtonStyle(
                   backgroundColor:

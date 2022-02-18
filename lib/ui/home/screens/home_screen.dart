@@ -4,10 +4,12 @@ import 'package:appgangapp/routes/app_pages.dart';
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
 import 'package:appgangapp/ui/home/controllers/nav_controller.dart';
 import 'package:appgangapp/ui/home/screens/product_home_screen.dart';
+import 'package:appgangapp/ui/products/controllers/products_controller.dart';
 import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
 import 'package:appgangapp/ui/proof/screens/page1.dart';
 import 'package:appgangapp/ui/proof/screens/page2.dart';
 import 'package:appgangapp/ui/proof/screens/page3.dart';
+import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -18,6 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavController navController = Get.find();
+    ProductController productController = Get.find();
     var screens = [
       Page1(),
       Page2(),
@@ -30,19 +33,26 @@ class HomeScreen extends StatelessWidget {
     // AuthController authController = Get.find();
     return Obx(
       () => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              // Get.to(OverlayAnimation());
-              Navigator.of(context).push(OverlayAnimation());
-            },
-          ),
-        ),
+        appBar: (navController.indexpage.value == 1 ||
+                navController.indexpage.value == 2)
+            ? null
+            : AppBar(
+                leading: IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    // Get.to(OverlayAnimation());
+                    Navigator.of(context).push(OverlayAnimation());
+                  },
+                ),
+              ),
         bottomNavigationBar: CustomNavigationBar(
           selectedIndex: navController.indexpage.value,
           onIndexChanged: (i) {
             navController.indexpage.value = i;
+
+            if (i != 2) {
+              productController.productsListPerCategory.value.clear();
+            }
           },
         ),
         body: screens[navController.indexpage.value],

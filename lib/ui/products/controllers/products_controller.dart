@@ -24,16 +24,6 @@ class ProductController extends GetxController {
   Rx<List<ProductModel>> productsList = Rx<List<ProductModel>>([]);
   Rx<List<ProductModel>> productsListPerCategory = Rx<List<ProductModel>>([]);
 
-/*
-  List<String> menuCategories = <String>[
-    'Selecciona Categoria',
-    'HOMBRE',
-    'MUJER',
-    'NIÑOS',
-    'EQUIPAMIENTO'
-  ];
-*/
-
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Rxn<ProductModel>? firestoreProduct = Rxn<ProductModel>();
@@ -61,6 +51,52 @@ class ProductController extends GetxController {
     productsList.bindStream(DatabaseProducts().productsStream());
     super.onReady();
   }
+
+  // PARA BUSQUEDA DE PRODUCTOS
+  TextEditingController searchQueryController = TextEditingController();
+  Rx<bool> isSearching = false.obs;
+  String searchQuery = "Search query";
+
+  Rx<List<ProductModel>> addProductos = Rx<List<ProductModel>>([]);
+
+  void updateSearchQuery(String newQuery) async {
+    List<ProductModel> listProductsSearch;
+    addProductos.value.clear();
+    searchQuery = newQuery;
+
+    if (productsListPerCategory.value.isEmpty) {
+      listProductsSearch = productsList.value;
+    } else {
+      listProductsSearch = productsListPerCategory.value;
+    }
+    if (newQuery != "") {
+      addProductos.value.addAll(listProductsSearch.where((element) =>
+          element.name!.isCaseInsensitiveContains(searchQueryController.text)));
+    }
+
+    addProductos.refresh();
+    print(addProductos);
+  }
+
+  void clearSearchQuery() {
+    searchQueryController.clear();
+    updateSearchQuery("");
+  }
+
+  void stopSearching() {
+    clearSearchQuery();
+    isSearching.value = false;
+  }
+
+/*
+  List<String> menuCategories = <String>[
+    'Selecciona Categoria',
+    'HOMBRE',
+    'MUJER',
+    'NIÑOS',
+    'EQUIPAMIENTO'
+  ];
+*/
 
   List<ProductModel> getProductsFromJson(List<Object?> jsonProducts) {
     List<ProductModel> _products = <ProductModel>[];
