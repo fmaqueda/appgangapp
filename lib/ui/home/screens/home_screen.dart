@@ -1,15 +1,14 @@
 import 'package:appgangapp/global_widgets/animations/overlay_animation.dart';
 import 'package:appgangapp/global_widgets/navigation/custom_navigation_bar.dart';
-import 'package:appgangapp/routes/app_pages.dart';
+
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
+import 'package:appgangapp/ui/chat/screens/rooms_chat_screen.dart';
 import 'package:appgangapp/ui/home/controllers/nav_controller.dart';
 import 'package:appgangapp/ui/home/screens/product_home_screen.dart';
 import 'package:appgangapp/ui/products/controllers/products_controller.dart';
 import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
 import 'package:appgangapp/ui/proof/screens/page1.dart';
-import 'package:appgangapp/ui/proof/screens/page2.dart';
-import 'package:appgangapp/ui/proof/screens/page3.dart';
-import 'package:appgangapp/ui/theme/color_theme.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -23,12 +22,12 @@ class HomeScreen extends StatelessWidget {
     ProductController productController = Get.find();
     var screens = [
       Page1(),
-      Page2(),
+      RoomsChatScreen(),
       ProductHomeScreen(),
       ProfileScreen(),
     ];
 
-    AuthController authController = AuthController();
+    //AuthController authController = AuthController();
 
     // AuthController authController = Get.find();
     return Obx(

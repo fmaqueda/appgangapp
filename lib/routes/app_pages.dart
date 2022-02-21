@@ -1,11 +1,14 @@
 import 'package:appgangapp/ui/auth/bindings/auth_binding.dart';
 import 'package:appgangapp/ui/auth/screens/hometab.dart';
 import 'package:appgangapp/ui/auth/screens/loading_screen.dart';
+import 'package:appgangapp/ui/chat/bindings/message_binding.dart';
+import 'package:appgangapp/ui/chat/screens/chat_screen.dart';
 import 'package:appgangapp/ui/home/bindings/nav_binding.dart';
 import 'package:appgangapp/ui/home/screens/home_screen.dart';
 import 'package:appgangapp/ui/products/bindings/product_binding.dart';
 import 'package:appgangapp/ui/products/screens/add_product_page.dart';
 import 'package:appgangapp/ui/profile/screens/edit_user_page.dart';
+import 'package:appgangapp/ui/proof/screens/page2.dart';
 
 import 'package:get/route_manager.dart';
 
@@ -23,6 +26,7 @@ class AppPages {
     GetPage(name: Routes.HOME, page: () => const HomeScreen(), bindings: [
       NavBinding(),
       ProductBinding(),
+      MessageBinding(),
     ]),
     GetPage(
       name: Routes.INTRO,
@@ -36,6 +40,11 @@ class AppPages {
       name: Routes.ADDPRODUCT,
       page: () => AddProduct(),
       binding: ProductBinding(),
+    ),
+    GetPage(
+      name: Routes.CHAT,
+      page: () => const ChatScreen(),
+      binding: MessageBinding(),
     ),
   ];
 }

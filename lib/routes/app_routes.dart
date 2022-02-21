@@ -6,4 +6,6 @@ abstract class Routes {
   static const LOADING = '/loading';
   static const EDITPROFILE = '/editprofile';
   static const ADDPRODUCT = '/addproduct';
+  static const CHAT = '/chat/:roomId';
+  static const LISTCHAT = '/listmessages';
 }
