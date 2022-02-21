@@ -9,6 +9,10 @@ import 'package:appgangapp/ui/products/bindings/product_binding.dart';
 import 'package:appgangapp/ui/products/screens/add_product_page.dart';
 import 'package:appgangapp/ui/profile/screens/edit_user_page.dart';
 import 'package:appgangapp/ui/proof/screens/page2.dart';
+import 'package:appgangapp/ui/videos/bindings/video_binding.dart';
+import 'package:appgangapp/ui/videos/bindings/video_edit_binding.dart';
+import 'package:appgangapp/ui/videos/screens/video_form_screen.dart';
+import 'package:appgangapp/ui/videos/screens/videos_home_screen.dart';
 
 import 'package:get/route_manager.dart';
 
@@ -26,6 +30,7 @@ class AppPages {
     GetPage(name: Routes.HOME, page: () => const HomeScreen(), bindings: [
       NavBinding(),
       ProductBinding(),
+      VideoBinding(),
       MessageBinding(),
     ]),
     GetPage(
@@ -45,6 +50,16 @@ class AppPages {
       name: Routes.CHAT,
       page: () => const ChatScreen(),
       binding: MessageBinding(),
+    ),
+    GetPage(
+      name: Routes.VIDEOS,
+      page: () => VideosHomeScreen(),
+      binding: VideoBinding(),
+    ),
+    GetPage(
+      name: Routes.VIDEOFORM,
+      page: () => VideoForm(),
+      binding: VideoEditBinding(),
     ),
   ];
 }

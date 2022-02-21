@@ -4,10 +4,7 @@ import 'package:appgangapp/global_widgets/form_input_field.dart';
 import 'package:appgangapp/global_widgets/get_image/get_image.dart';
 import 'package:appgangapp/global_widgets/show_get_dialog.dart';
 import 'package:appgangapp/models/products/product_model.dart';
-import 'package:appgangapp/services/firestore/firestore_service_products.dart';
-import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
 import 'package:appgangapp/ui/products/controllers/products_controller.dart';
-import 'package:appgangapp/ui/products/otherwidgets/dropdown/dropdownmenu.dart';
 import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:appgangapp/ui/theme/text_theme.dart';
 import 'package:appgangapp/utils/form_validators.dart';
@@ -15,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AddProduct extends StatelessWidget {
   AddProduct({Key? key}) : super(key: key);
@@ -30,60 +26,14 @@ class AddProduct extends StatelessWidget {
 
     ProductController productController = Get.find();
 
-/*
-    final List<DropdownMenuItem<String>> _dropdownCategories =
-        productController.menuCategories
-            .map((String value) => DropdownMenuItem(
-                  value: value,
-                  child: Text(value),
-                ))
-            .toList();
-*/
-/*
-    Future _uploadFile(BuildContext context, File imageProfile) async {
-      firebase_storage.Reference storageReference = firebase_storage
-          .FirebaseStorage.instance
-          .ref()
-          .child('imageProfile/${authController.firestoreUser!.value!.uid}');
-
-      firebase_storage.UploadTask uploadTask =
-          storageReference.putFile(imageProfile);
-
-      print(storageReference);
-
-      await uploadTask.whenComplete(() {
-        storageReference.getDownloadURL().then((url) {
-          ProductModel _updatedUser = ProductModel(
-              uid: authController.firestoreUser!.value!.uid,
-              name: authController.firestoreUser!.value!.email,
-              originalprice: 0.0,
-              realprice: 0.0,
-              imageProductUrl: url);
-
-          authController.updateUser(context, _updatedUser);
-        });
-      });
-    }
-*/
-
     Future _imgFromCamera(BuildContext context) async {
       XFile? image =
           await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-      //authController.sampleImage.value = image;
-
-      //if (image != null) await _uploadFile(context, File(image.path));
-      /*if (authController.firestoreUser!.value != null)
-        authController.firestoreUser!.value!.photoUrl = image.path;*/
-
-      //setState(() {});
     }
 
     Future _imgFromGallery(BuildContext context) async {
       XFile? image =
           await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-
-      //if (image != null) await _uploadFile(context, File(image.path));
-      //setState(() {});
     }
 
     void _showpicker(context) {

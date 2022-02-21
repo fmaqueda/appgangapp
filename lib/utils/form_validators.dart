@@ -6,6 +6,10 @@ class FormValidator {
     return (text ?? "").isEmail ? null : SK.not_valid_email;
   }
 
+  String? isValidURL(String? text) {
+    return (text ?? "").isURL ? null : SK.not_valid_url;
+  }
+
   String? isValidName(String? text) {
     if (text == null || text.isEmpty) {
       return SK.name_cannot_be_empty;

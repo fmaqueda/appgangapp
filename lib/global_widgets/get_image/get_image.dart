@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:appgangapp/models/products/product_model.dart';
 import 'package:appgangapp/models/user_model.dart';
+import 'package:appgangapp/models/videos/video_model.dart';
 import 'package:appgangapp/ui/auth/controllers/auth_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,34 @@ class GetImage {
   final AuthController authController = Get.find();
 
   final picker = ImagePicker();
+
+  Future uploadFileVideoImage(
+      BuildContext context, File imageVideo, VideoModel newvideo) async {
+    firebase_storage.Reference storageReference = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .child('imagesVideos/${newvideo.id}');
+
+    firebase_storage.UploadTask uploadTask =
+        storageReference.putFile(imageVideo);
+
+    await uploadTask.whenComplete(
+      () async {
+        await storageReference.getDownloadURL().then((url) {
+          urlGetImage = url;
+
+/*
+          ProductModel _updatedProduct = ProductModel(
+            photoUrl: url,
+          );
+*/
+          newvideo.urlImage = url;
+
+          //productController.createProduct(newproduct);
+        });
+      },
+    );
+  }
 
   Future uploadFileProduct(
       BuildContext context, File imageProfile, ProductModel newproduct) async {
