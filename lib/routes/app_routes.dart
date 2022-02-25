@@ -4,6 +4,7 @@ abstract class Routes {
   static const HOME = '/home';
   static const INTRO = '/intro';
   static const LOADING = '/loading';
+  static const PROFILE = '/profile';
   static const EDITPROFILE = '/editprofile';
   static const ADDPRODUCT = '/addproduct';
   static const CHAT = '/chat/:roomId';

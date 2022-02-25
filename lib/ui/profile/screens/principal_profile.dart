@@ -1,3 +1,4 @@
+import 'package:appgangapp/routes/app_pages.dart';
 import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,26 @@ class PrincipalProfile extends StatelessWidget {
     }
   }
 
+  void _launchTelf() async {
+    String telNumber = 'tel:+34918271122';
+
+    if (await canLaunch(telNumber)) {
+      await launch(telNumber);
+    } else {
+      throw 'No se puede llamar por telefono';
+    }
+  }
+
+  void _launchSMS() async {
+    String telNumber = 'sms:+34918271122';
+
+    if (await canLaunch(telNumber)) {
+      await launch(telNumber);
+    } else {
+      throw 'No se puede enviar el SMS';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +70,49 @@ class PrincipalProfile extends StatelessWidget {
             ),
             trailing: const Icon(Icons.arrow_right, size: 30),
             title: const Text("Email"),
-            subtitle: const Text("Comparte por email"),
+            subtitle: const Text("Envianos un email"),
             onTap: () {
               _launchMail();
+            },
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ListTile(
+            shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.grey[300]!),
+                borderRadius: BorderRadius.circular(5)),
+            contentPadding:
+                const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            leading: Container(
+              padding: const EdgeInsets.only(top: 10),
+              child: const Icon(Icons.call, size: 18),
+            ),
+            trailing: const Icon(Icons.arrow_right, size: 30),
+            title: const Text("Telefono"),
+            subtitle: const Text("Llamanos por telefono"),
+            onTap: () {
+              _launchTelf();
+            },
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ListTile(
+            shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.grey[300]!),
+                borderRadius: BorderRadius.circular(5)),
+            contentPadding:
+                const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            leading: Container(
+              padding: const EdgeInsets.only(top: 10),
+              child: const Icon(Icons.sms, size: 18),
+            ),
+            trailing: const Icon(Icons.arrow_right, size: 30),
+            title: const Text("Text SMS"),
+            subtitle: const Text("Envianos un SMS"),
+            onTap: () {
+              _launchSMS();
             },
           ),
           const SizedBox(
@@ -91,7 +152,7 @@ class PrincipalProfile extends StatelessWidget {
             title: const Text("Settings"),
             subtitle: const Text("Configura tu Perfil"),
             onTap: () {
-              Get.to(ProfileScreen());
+              Get.toNamed(Routes.PROFILE);
             },
           ),
         ],

@@ -8,6 +8,7 @@ import 'package:appgangapp/ui/home/screens/home_screen.dart';
 import 'package:appgangapp/ui/products/bindings/product_binding.dart';
 import 'package:appgangapp/ui/products/screens/add_product_page.dart';
 import 'package:appgangapp/ui/profile/screens/edit_user_page.dart';
+import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
 import 'package:appgangapp/ui/proof/screens/page2.dart';
 import 'package:appgangapp/ui/videos/bindings/video_binding.dart';
 import 'package:appgangapp/ui/videos/bindings/video_edit_binding.dart';
@@ -36,6 +37,10 @@ class AppPages {
     GetPage(
       name: Routes.INTRO,
       page: () => const HomePageTab(),
+    ),
+    GetPage(
+      name: Routes.PROFILE,
+      page: () => ProfileScreen(),
     ),
     GetPage(
       name: Routes.EDITPROFILE,

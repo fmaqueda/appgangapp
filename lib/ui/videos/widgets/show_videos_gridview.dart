@@ -33,8 +33,7 @@ class VideosGridView extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               if (videosToShow[index].urlVid != null) {
-                Get.to(
-                    VideoPlayerScreen(videoUrl: videosToShow[index].urlVid!));
+                Get.to(VideoPlayerScreen(videoSelect: videosToShow[index]));
               }
               //Get.to(() {
               print("Video URL " + videosToShow[index].urlVid!);

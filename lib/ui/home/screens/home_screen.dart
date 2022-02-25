@@ -5,10 +5,9 @@ import 'package:appgangapp/ui/home/controllers/nav_controller.dart';
 import 'package:appgangapp/ui/products/screens/product_home_screen.dart';
 import 'package:appgangapp/ui/products/controllers/products_controller.dart';
 import 'package:appgangapp/ui/profile/screens/principal_profile.dart';
-import 'package:appgangapp/ui/profile/screens/profile_screen.dart';
+
 import 'package:appgangapp/ui/theme/color_theme.dart';
 import 'package:appgangapp/ui/videos/screens/videos_home_screen.dart';
-import 'package:appgangapp/ui/videos/screens/videos_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -25,16 +24,12 @@ class HomeScreen extends StatelessWidget {
       const VideosHomeScreen(),
       const RoomsChatScreen(),
       const ProductHomeScreen(),
-      //ProfileScreen(),
       const PrincipalProfile(),
     ];
 
-    //AuthController authController = AuthController();
-
-    // AuthController authController = Get.find();
     return Obx(
       () => Scaffold(
-        appBar: (navController.indexpage.value == 1 ||
+        appBar: (navController.indexpage.value == -1 ||
                 navController.indexpage.value == 2)
             ? null
             : AppBar(
