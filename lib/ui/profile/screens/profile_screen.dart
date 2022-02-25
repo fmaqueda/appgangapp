@@ -16,6 +16,16 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.back();
+        },
+        child: Icon(
+          Icons.arrow_back,
+          size: 30,
+        ),
+        backgroundColor: Colors.green[200],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
